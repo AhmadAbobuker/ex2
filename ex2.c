@@ -9,7 +9,6 @@ int main() {
     int choice;
 
     while(1) {
-        // Print menu
         printf("Choose an option:\n");
         printf("\t1. Happy Face\n");
         printf("\t2. Balanced Number\n");
@@ -38,23 +37,23 @@ int main() {
             printf("Enter symbols for the eyes, nose, and mouth:\n");
             scanf(" %c %c %c", &e, &n, &m);
 
-            while(1) {
-                printf("Enter face size:\n");
-                scanf("%d", &size);
-                if(size > 0 && size%2 == 1) break;
+            printf("Enter face size:\n");
+            scanf("%d", &size);
+            while(size <= 0 || size % 2 == 0) {
                 printf("The face's size must be an odd and positive number, please try again:\n");
+                scanf("%d", &size);
             }
 
-            // Print eyes
+            // Eyes
             printf("%c", e);
             for(int i = 0; i < size-2; i++) printf(" ");
             printf("%c\n", e);
 
-            // Print nose
+            // Nose
             for(int i = 0; i < (size-1)/2; i++) printf(" ");
             printf("%c\n", n);
 
-            // Print mouth
+            // Mouth
             printf("\\");
             for(int i = 0; i < size; i++) printf("%c", m);
             printf("/\n");
@@ -62,11 +61,11 @@ int main() {
         else if(choice == 2) {  // Balanced Number
             int num, original, digits = 0, sum1 = 0, sum2 = 0;
 
-            while(1) {
-                printf("Enter a number:\n");
-                scanf("%d", &num);
-                if(num > 0) break;
+            printf("Enter a number:\n");
+            scanf("%d", &num);
+            while(num <= 0) {
                 printf("Only positive number is allowed, please try again:\n");
+                scanf("%d", &num);
             }
 
             original = num;
@@ -101,11 +100,11 @@ int main() {
         else if(choice == 3) {  // Generous Number
             int num, sum = 0;
 
-            while(1) {
-                printf("Enter a number:\n");
-                scanf("%d", &num);
-                if(num > 0) break;
+            printf("Enter a number:\n");
+            scanf("%d", &num);
+            while(num <= 0) {
                 printf("Only positive number is allowed, please try again:\n");
+                scanf("%d", &num);
             }
 
             for(int i = 1; i < num; i++) {
@@ -121,11 +120,11 @@ int main() {
             int num, rev = 0, temp;
             int is_prime1 = 1, is_prime2 = 1;
 
-            while(1) {
-                printf("Enter a number:\n");
-                scanf("%d", &num);
-                if(num > 0) break;
+            printf("Enter a number:\n");
+            scanf("%d", &num);
+            while(num <= 0) {
                 printf("Only positive number is allowed, please try again:\n");
+                scanf("%d", &num);
             }
 
             if(num == 1) {
@@ -140,7 +139,7 @@ int main() {
                 temp /= 10;
             }
 
-            // Check original number primality
+            // Check original number
             for(int i = 2; i*i <= num; i++) {
                 if(num%i == 0) {
                     is_prime1 = 0;
@@ -148,15 +147,18 @@ int main() {
                 }
             }
 
-            // Check reversed number primality
-            for(int i = 2; i*i <= rev; i++) {
-                if(rev%i == 0) {
-                    is_prime2 = 0;
-                    break;
+            // Check reversed number
+            if(rev < 2) is_prime2 = 0;
+            else {
+                for(int i = 2; i*i <= rev; i++) {
+                    if(rev%i == 0) {
+                        is_prime2 = 0;
+                        break;
+                    }
                 }
             }
 
-            if(is_prime1 && is_prime2 && rev > 1)
+            if(is_prime1 && is_prime2)
                 printf("This number completes the circle of joy!\n");
             else
                 printf("The circle remains incomplete.\n");
@@ -164,11 +166,11 @@ int main() {
         else if(choice == 5) {  // Happy Numbers
             int n, current, sum, temp;
 
-            while(1) {
-                printf("Enter a number:\n");
-                scanf("%d", &n);
-                if(n > 0) break;
+            printf("Enter a number:\n");
+            scanf("%d", &n);
+            while(n <= 0) {
                 printf("Only positive number is allowed, please try again:\n");
+                scanf("%d", &n);
             }
 
             printf("Between 1 and %d only these numbers bring happiness: ", n);
@@ -200,10 +202,10 @@ int main() {
                 smile = cheer = 0;
                 printf("Enter a smile and cheer number:\n");
 
-                // Read until newline
+                // Clear input buffer
                 while((c = getchar()) != '\n' && c != EOF);
 
-                // Parse input
+                // Flexible input parsing
                 if(scanf(" smile : %d , cheer : %d", &smile, &cheer) == 2 ||
                    scanf(" smile:%d,cheer:%d", &smile, &cheer) == 2) {
                     if(smile > 0 && cheer > 0 && smile != cheer) break;
@@ -212,19 +214,19 @@ int main() {
                 printf("Only 2 different positive numbers in the given format are allowed for the festival, please try again:\n");
             }
 
-            while(1) {
-                printf("Enter the maximum number of the festival:\n");
-                scanf("%d", &max);
-                if(max > 0) break;
+            printf("Enter the maximum number of the festival:\n");
+            scanf("%d", &max);
+            while(max <= 0) {
                 printf("Only positive maximum number is allowed, please try again:\n");
+                scanf("%d", &max);
             }
 
             for(int i = 1; i <= max; i++) {
-                if(i%smile == 0 && i%cheer == 0)
+                if(i % smile == 0 && i % cheer == 0)
                     printf("Festival!\n");
-                else if(i%smile == 0)
+                else if(i % smile == 0)
                     printf("Smile!\n");
-                else if(i%cheer == 0)
+                else if(i % cheer == 0)
                     printf("Cheer!\n");
                 else
                     printf("%d\n", i);
