@@ -1,3 +1,12 @@
+/******************
+Name:ahmad abu bakr
+ID:213109192
+Assignment: ex2
+*******************/
+
+
+
+
 #include <stdio.h>
 
 int main() {
