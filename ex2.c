@@ -20,7 +20,7 @@ int main() {
     int temp2;
     int primeCounter = 0;
     int n, i;
-    int num1 = 0, num2 = 0;
+    // Removed unused variables: int num1 = 0, num2 = 0;
 
     printf("Choose an option:\n\n%s%s%s%s%s%s%s",
            "    1. Happy Face\n\n",
@@ -225,13 +225,11 @@ int main() {
                 if (tryCount > 0) {
                     printf("Only 2 different positive numbers in the given format are allowed for the festival, please try again:\n");
                 }
-                // Filling the array with garbage values to avoid random values so we can manipulate the string each time it restarts.
                 for (int i = 0; i < 1000; i++) {
                     phrase[i] = '\0';
                 }
-                // Restarting the counters for each new input after reset.
                 errorCounter = 0;
-                smilePosition = 999; // 999 is a flag to indicate that it has not been set yet.
+                smilePosition = 999;
                 cheerPosition = 0;
                 commaPosition = 0;
                 numbersValidator = 0;
@@ -242,7 +240,6 @@ int main() {
                 equal = 0;
                 sumSmile = 0;
                 sumCheer = 0;
-                // Asking user for input until Enter is pressed.
                 for (int i = 0; i < 1000; i++) {
                     phrase[i] = getchar();
                     if (phrase[i] == '\n') {
@@ -250,7 +247,6 @@ int main() {
                         break;
                     }
                 }
-                // Pattern recognition in the input string: detecting "smile:".
                 for (int i = 0; i < 1000; i++) {
                     if ((phrase[i] == 's') && (phrase[i + 1] == 'm') && (phrase[i + 2] == 'i') &&
                         (phrase[i + 3] == 'l') && (phrase[i + 4] == 'e') && (phrase[i + 5] == ':')) {
@@ -258,14 +254,12 @@ int main() {
                         smilePosition = i;
                     }
                 }
-                // Comma detection.
                 for (int i = 0; i < 1000; i++) {
                     if (phrase[i] == ',') {
                         errorCounter++;
                         commaPosition = i;
                     }
                 }
-                // Detect "cheer:".
                 for (int i = 0; i < 1000; i++) {
                     if ((phrase[i] == 'c') && (phrase[i + 1] == 'h') && (phrase[i + 2] == 'e') &&
                         (phrase[i + 3] == 'e') && (phrase[i + 4] == 'r') && (phrase[i + 5] == ':')) {
@@ -273,11 +267,9 @@ int main() {
                         cheerPosition = i;
                     }
                 }
-                // Order validation.
                 if ((commaPosition > smilePosition) && (commaPosition < cheerPosition)) {
                     errorCounter++;
                 }
-                // Validate characters between "smile:" and ",".
                 if (errorCounter == 4) {
                     for (int i = smilePosition + 6; i < commaPosition; i++) {
                         if (phrase[i] != '0' && phrase[i] != '1' && phrase[i] != '2' && phrase[i] != '3' &&
@@ -287,7 +279,6 @@ int main() {
                         }
                     }
                 }
-                // Check for at least one digit between "smile:" and ",".
                 if (errorCounter == 4) {
                     for (int i = smilePosition + 6; i < commaPosition; i++) {
                         if (phrase[i] == '0' || phrase[i] == '1' || phrase[i] == '2' || phrase[i] == '3' ||
@@ -298,7 +289,6 @@ int main() {
                         }
                     }
                 }
-                // Same check for "cheer:" and end of line.
                 if (errorCounter == 4) {
                     for (int i = cheerPosition + 6; i < endOfLinePosition; i++) {
                         if (phrase[i] != '0' && phrase[i] != '1' && phrase[i] != '2' && phrase[i] != '3' &&
@@ -318,7 +308,6 @@ int main() {
                         }
                     }
                 }
-                // Final check: before the line.
                 if (errorCounter == 4 && numbersValidator == 2) {
                     for (int i = 0; i < smilePosition; i++) {
                         if (phrase[i] != '\0' && phrase[i] != '\n') {
@@ -326,7 +315,6 @@ int main() {
                         }
                     }
                 }
-                // Final check: after the line.
                 if (errorCounter == 4 && numbersValidator == 2) {
                     for (int i = endOfLinePosition + 1; i < 1000; i++) {
                         if (phrase[i] != '\0' && phrase[i] != '\n') {
@@ -334,7 +322,6 @@ int main() {
                         }
                     }
                 }
-                // Check if the two numbers are equal.
                 if (errorCounter == 4 && numbersValidator == 2 && upNormality == 0) {
                     for (int i = smilePosition + 6; i < commaPosition; i++) {
                         if (phrase[i] == '0' || phrase[i] == '1' || phrase[i] == '2' || phrase[i] == '3' ||
