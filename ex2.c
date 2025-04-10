@@ -20,7 +20,7 @@ int main() {
     int temp2;
     int primecounter = 0;
     int n, i;
-    
+
     printf("Choose an option:\n\n%s%s%s%s%s%s%s",
         "    1. Happy Face\n\n",
         "    2. Balanced Number\n\n",
@@ -42,16 +42,16 @@ int main() {
     case 1: {
         printf("Happy Face\n");
         char eyes, mouth, nose;
-        printf("Enter symbols for the eyes, nose, and mouth:\n");  // Fixed
+        printf("Enter symbols for the eyes, nose, and mouth:\n");
         scanf(" %c %c %c", &eyes, &nose, &mouth);
         int odd;
-        printf("Enter face size:\n");  // Fixed
+        printf("Enter face size:\n");
         scanf("%d", &odd);
         while ((odd % 2 == 0) || (odd < 0)) {
-            printf("The face's size must be an odd and positive number, please try again:\n");  // Fixed
+            printf("The face's size must be an odd and positive number, please try again:\n");
             scanf("%d", &odd);
         }
-        printf("%c ", eyes);
+        printf("%c", eyes);
         for (int i = 0; i < (odd - 1); i++) {
             printf(" ");
         }
@@ -63,14 +63,14 @@ int main() {
         printf("%c\n", nose);
 
         printf("\\");
-        for (int i = 0; i < ((odd)); i++) {
+        for (int i = 0; i < odd; i++) {
             printf("%c", mouth);
         }
         printf("/");
         break;
     }
     case 2: {
-        printf("Enter a number:");
+        printf("Enter a number: ");
         int number, numbertemp, sum1 = 0, numbertemp2 = 0, sum2 = 0;
         int digitscounter = 1;
         scanf("%d", &number);
@@ -122,15 +122,16 @@ int main() {
         break;
     }
     case 3: {
-        printf("Enter a number:");
+        printf("Enter a number: ");
         scanf("%d", &number10);
         while (number10 < 0) {
             printf("Only positive number is allowed, please try again:\n");
             scanf("%d", &number10);
         }
+        sum10 = 0;
         for (int i = 1; i < number10; i++) {
             if (number10 % i == 0) {
-                sum10 = sum10 + i;
+                sum10 += i;
             }
         }
         if (sum10 > number10) {
@@ -142,7 +143,7 @@ int main() {
         break;
     }
     case 4: {
-        printf("Enter a number:");
+        printf("Enter a number: ");
         int digitscounter = 1;
         scanf("%d", &n1);
         temp = n1;
@@ -160,15 +161,17 @@ int main() {
         }
         int iinverse = digitscounter - 1;
         int power = 1;
+        n2 = 0;
         for (int i = 0; i < digitscounter; i++) {
             for (int g = 0; g < iinverse; g++) {
-                power = power * 10;
+                power *= 10;
             }
             iinverse--;
-            n2 = n2 + ((temp % 10) * power);
-            temp = temp / 10;
+            n2 += ((temp % 10) * power);
+            temp /= 10;
             power = 1;
         }
+        primecounter = 0;
         for (int i = 2; i < temp2 - 1; i++) {
             if ((temp2 % i) == 0) {
                 primecounter++;
@@ -180,7 +183,6 @@ int main() {
                 primecounter++;
                 break;
             }
-
         }
         if ((n2 == 0) || (n2 == 1)) {
             printf("The circle remains incomplete.\n");
@@ -221,18 +223,17 @@ int main() {
                 temp = sum;
             }
         }
+        printf("\n");
         break;
     }
     case 6: {
         printf("Enter a smile and cheer number:\n");
         char Phrase[1000];
-        while ((ErrorCounter != 4) || (NumbersValidater != 2) || (UpNormality != 0)||(Equal!=0)) {
+        while ((ErrorCounter != 4) || (NumbersValidater != 2) || (UpNormality != 0) || (Equal != 0)) {
             if (try > 0) {
                 printf("Only 2 different positive numbers in the given format are allowed for the festival, please try again:\n");
             }
-            for (int i = 0; i < 1000; i++) {
-                Phrase[i] = '\0';
-            }
+            for (int i = 0; i < 1000; i++) Phrase[i] = '\0';
             ErrorCounter = 0;
             SmilePosition = 999;
             CheerPosition = 0;
@@ -245,6 +246,10 @@ int main() {
             Equal = 0;
             sumsmile = 0;
             sumcheer = 0;
+
+            int c;
+            while ((c = getchar()) != '\n' && c != EOF);
+
             for (int i = 0; i < 1000; i++) {
                 Phrase[i] = getchar();
                 if (Phrase[i] == '\n') {
@@ -253,19 +258,21 @@ int main() {
                 }
             }
             for (int i = 0; i < 1000; i++) {
-                if ((Phrase[i] == 's') && (Phrase[i + 1] == 'm') && (Phrase[i + 2] == 'i') && (Phrase[i + 3] == 'l') && (Phrase[i + 4] == 'e') && (Phrase[i + 5] == ':')) {
+                if ((Phrase[i] == 's') && (Phrase[i+1] == 'm') && (Phrase[i+2] == 'i') &&
+                    (Phrase[i+3] == 'l') && (Phrase[i+4] == 'e') && (Phrase[i+5] == ':')) {
                     ErrorCounter++;
                     SmilePosition = i;
                 }
             }
             for (int i = 0; i < 1000; i++) {
-                if ((Phrase[i] == ',')) {
+                if (Phrase[i] == ',') {
                     ErrorCounter++;
                     CommaPosition = i;
                 }
             }
             for (int i = 0; i < 1000; i++) {
-                if ((Phrase[i] == 'c') && (Phrase[i + 1] == 'h') && (Phrase[i + 2] == 'e') && (Phrase[i + 3] == 'e') && (Phrase[i + 4] == 'r') && (Phrase[i + 5] == ':')) {
+                if ((Phrase[i] == 'c') && (Phrase[i+1] == 'h') && (Phrase[i+2] == 'e') &&
+                    (Phrase[i+3] == 'e') && (Phrase[i+4] == 'r') && (Phrase[i+5] == ':')) {
                     ErrorCounter++;
                     CheerPosition = i;
                 }
@@ -275,14 +282,14 @@ int main() {
             }
             if (ErrorCounter == 4) {
                 for (int i = SmilePosition + 6; i < CommaPosition; i++) {
-                    if ((Phrase[i] != '0') && (Phrase[i] != '1') && (Phrase[i] != '2') && (Phrase[i] != '3') && (Phrase[i] != '4') && (Phrase[i] != '5') && (Phrase[i] != '6') && (Phrase[i] != '7') && (Phrase[i] != '8') && (Phrase[i] != '9') && (Phrase[i] != ' ')) {
+                    if (!((Phrase[i] >= '0' && Phrase[i] <= '9') || Phrase[i] == ' ')) {
                         ErrorCounter--;
                     }
                 }
             }
             if (ErrorCounter == 4) {
                 for (int i = SmilePosition + 6; i < CommaPosition; i++) {
-                    if ((Phrase[i] == '0') || (Phrase[i] == '1') || (Phrase[i] == '2') || (Phrase[i] == '3') || (Phrase[i] == '4') || (Phrase[i] == '5') || (Phrase[i] == '6') || (Phrase[i] == '7') || (Phrase[i] == '8') || (Phrase[i] == '9')) {
+                    if (Phrase[i] >= '0' && Phrase[i] <= '9') {
                         NumbersValidater++;
                         break;
                     }
@@ -290,14 +297,14 @@ int main() {
             }
             if (ErrorCounter == 4) {
                 for (int i = CheerPosition + 6; i < EndOfLinePosition; i++) {
-                    if ((Phrase[i] != '0') && (Phrase[i] != '1') && (Phrase[i] != '2') && (Phrase[i] != '3') && (Phrase[i] != '4') && (Phrase[i] != '5') && (Phrase[i] != '6') && (Phrase[i] != '7') && (Phrase[i] != '8') && (Phrase[i] != '9') && (Phrase[i] != ' ')) {
+                    if (!((Phrase[i] >= '0' && Phrase[i] <= '9') || Phrase[i] == ' ')) {
                         ErrorCounter--;
                     }
                 }
             }
             if (ErrorCounter == 4) {
                 for (int i = CheerPosition + 6; i < EndOfLinePosition; i++) {
-                    if ((Phrase[i] == '0') || (Phrase[i] == '1') || (Phrase[i] == '2') || (Phrase[i] == '3') || (Phrase[i] == '4') || (Phrase[i] == '5') || (Phrase[i] == '6') || (Phrase[i] == '7') || (Phrase[i] == '8') || (Phrase[i] == '9')) {
+                    if (Phrase[i] >= '0' && Phrase[i] <= '9') {
                         NumbersValidater++;
                         break;
                     }
@@ -305,35 +312,23 @@ int main() {
             }
             if ((ErrorCounter == 4) && (NumbersValidater == 2)) {
                 for (int i = 0; i < SmilePosition; i++) {
-                    if ((Phrase[i] == '\0') || (Phrase[i] == '\n')) {
-                    }
-                    else {
-                        UpNormality++;
-                    }
+                    if (Phrase[i] != '\0' && Phrase[i] != '\n') UpNormality++;
                 }
             }
             if ((ErrorCounter == 4) && (NumbersValidater == 2)) {
                 for (int i = EndOfLinePosition + 1; i < 1000; i++) {
-                    if ((Phrase[i] == '\0') || (Phrase[i] == '\n')) {
-                    }
-                    else {
-                        UpNormality++;
-                    }
+                    if (Phrase[i] != '\0' && Phrase[i] != '\n') UpNormality++;
                 }
             }
-            if ((ErrorCounter == 4)&&(NumbersValidater==2)&&(UpNormality==0)) {
+            if ((ErrorCounter == 4) && (NumbersValidater == 2) && (UpNormality == 0)) {
                 for (int i = SmilePosition + 6; i < CommaPosition; i++) {
-                    if ((Phrase[i] == '0') || (Phrase[i] == '1') || (Phrase[i] == '2') || (Phrase[i] == '3') || (Phrase[i] == '4') || (Phrase[i] == '5') || (Phrase[i] == '6') || (Phrase[i] == '7') || (Phrase[i] == '8') || (Phrase[i] == '9')) {
-                        digitscounter++;
-                    }
+                    if (Phrase[i] >= '0' && Phrase[i] <= '9') digitscounter++;
                 }
-                for (int i = 0; i < digitscounter-1; i++) {
-                    powerof10 = powerof10 * 10;
-                }
+                for (int i = 0; i < digitscounter-1; i++) powerof10 *= 10;
                 for (int i = SmilePosition + 6; i < CommaPosition; i++) {
-                    if ((Phrase[i] == '0') || (Phrase[i] == '1') || (Phrase[i] == '2') || (Phrase[i] == '3') || (Phrase[i] == '4') || (Phrase[i] == '5') || (Phrase[i] == '6') || (Phrase[i] == '7') || (Phrase[i] == '8') || (Phrase[i] == '9')) {
-                        sumsmile = sumsmile + (Phrase[i] - 48) * powerof10;
-                        powerof10 = powerof10 / 10;
+                    if (Phrase[i] >= '0' && Phrase[i] <= '9') {
+                        sumsmile += (Phrase[i] - 48) * powerof10;
+                        powerof10 /= 10;
                     }
                 }
             }
@@ -341,22 +336,16 @@ int main() {
             powerof10 = 1;
             if ((ErrorCounter == 4) && (NumbersValidater == 2) && (UpNormality == 0)) {
                 for (int i = CheerPosition + 6; i < EndOfLinePosition; i++) {
-                    if ((Phrase[i] == '0') || (Phrase[i] == '1') || (Phrase[i] == '2') || (Phrase[i] == '3') || (Phrase[i] == '4') || (Phrase[i] == '5') || (Phrase[i] == '6') || (Phrase[i] == '7') || (Phrase[i] == '8') || (Phrase[i] == '9')) {
-                        digitscounter++;
-                    }
+                    if (Phrase[i] >= '0' && Phrase[i] <= '9') digitscounter++;
                 }
-                for (int i = 0; i < digitscounter - 1; i++) {
-                    powerof10 = powerof10 * 10;
-                }
+                for (int i = 0; i < digitscounter - 1; i++) powerof10 *= 10;
                 for (int i = CheerPosition + 6; i < EndOfLinePosition; i++) {
-                    if ((Phrase[i] == '0') || (Phrase[i] == '1') || (Phrase[i] == '2') || (Phrase[i] == '3') || (Phrase[i] == '4') || (Phrase[i] == '5') || (Phrase[i] == '6') || (Phrase[i] == '7') || (Phrase[i] == '8') || (Phrase[i] == '9')) {
-                        sumcheer = sumcheer + (Phrase[i] - 48) * powerof10;
-                        powerof10 = powerof10 / 10;
+                    if (Phrase[i] >= '0' && Phrase[i] <= '9') {
+                        sumcheer += (Phrase[i] - 48) * powerof10;
+                        powerof10 /= 10;
                     }
                 }
-                if ((sumsmile == sumcheer)) {
-                    Equal++;
-                }
+                if (sumsmile == sumcheer) Equal++;
             }
             try++;
         }
@@ -386,7 +375,7 @@ int main() {
         break;
     }
     case 7:
-        printf("Thank you for your journey through Numeria!\n");  // Fixed typo
+        printf("Thank you for your journey through Numeria!\n");
         break;
     }
 
