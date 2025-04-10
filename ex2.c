@@ -3,6 +3,7 @@ Name:ahmad abu bakr
 ID:213109192
 Assignment: ex2
 *******************/
+
 #include <stdio.h>
 
 int main() {
@@ -19,6 +20,7 @@ int main() {
     int temp2;
     int primecounter = 0;
     int n, i;
+    
     printf("Choose an option:\n\n%s%s%s%s%s%s%s",
         "    1. Happy Face\n\n",
         "    2. Balanced Number\n\n",
@@ -40,13 +42,13 @@ int main() {
     case 1: {
         printf("Happy Face\n");
         char eyes, mouth, nose;
-        printf("Enter the Eyes, Nose and Mouth of the Happy Face:\n");
+        printf("Enter symbols for the eyes, nose, and mouth:\n");  // Fixed
         scanf(" %c %c %c", &eyes, &nose, &mouth);
         int odd;
-        printf("Enter a positive and odd number:\n");
+        printf("Enter face size:\n");  // Fixed
         scanf("%d", &odd);
         while ((odd % 2 == 0) || (odd < 0)) {
-            printf("Odd Positive number is not valid, Please Enter it again:\n");
+            printf("The face's size must be an odd and positive number, please try again:\n");  // Fixed
             scanf("%d", &odd);
         }
         printf("%c ", eyes);
@@ -61,7 +63,6 @@ int main() {
         printf("%c\n", nose);
 
         printf("\\");
-
         for (int i = 0; i < ((odd)); i++) {
             printf("%c", mouth);
         }
@@ -134,7 +135,6 @@ int main() {
         }
         if (sum10 > number10) {
             printf("This number is generous!\n");
-
         }
         else {
             printf("This number does not share.\n");
@@ -183,14 +183,12 @@ int main() {
 
         }
         if ((n2 == 0) || (n2 == 1)) {
-
             printf("The circle remains incomplete.\n");
         }
         else if (primecounter == 0) {
             printf("This number completes the circle of joy!\n");
         }
         else {
-
             printf("The circle remains incomplete.\n");
         }
         break;
@@ -213,7 +211,6 @@ int main() {
                     sum += digit * digit;
                     current /= 10;
                 }
-
                 if (sum == 1) {
                     printf("%d ", i);
                     break;
@@ -221,7 +218,6 @@ int main() {
                 else if (sum == 4) {
                     break;
                 }
-
                 temp = sum;
             }
         }
@@ -299,7 +295,6 @@ int main() {
                     }
                 }
             }
-
             if (ErrorCounter == 4) {
                 for (int i = CheerPosition + 6; i < EndOfLinePosition; i++) {
                     if ((Phrase[i] == '0') || (Phrase[i] == '1') || (Phrase[i] == '2') || (Phrase[i] == '3') || (Phrase[i] == '4') || (Phrase[i] == '5') || (Phrase[i] == '6') || (Phrase[i] == '7') || (Phrase[i] == '8') || (Phrase[i] == '9')) {
@@ -311,7 +306,6 @@ int main() {
             if ((ErrorCounter == 4) && (NumbersValidater == 2)) {
                 for (int i = 0; i < SmilePosition; i++) {
                     if ((Phrase[i] == '\0') || (Phrase[i] == '\n')) {
-
                     }
                     else {
                         UpNormality++;
@@ -321,7 +315,6 @@ int main() {
             if ((ErrorCounter == 4) && (NumbersValidater == 2)) {
                 for (int i = EndOfLinePosition + 1; i < 1000; i++) {
                     if ((Phrase[i] == '\0') || (Phrase[i] == '\n')) {
-
                     }
                     else {
                         UpNormality++;
@@ -376,29 +369,24 @@ int main() {
             scanf("%d", &maxnumber);
         }
 
-        for (int i = 1; i <= maxnumber; i++)
-        {
-            if (i % sumsmile == 0 && i % sumcheer == 0)
-            {
+        for (int i = 1; i <= maxnumber; i++) {
+            if (i % sumsmile == 0 && i % sumcheer == 0) {
                 printf("Festival!\n");
             }
-            else if (i % sumsmile == 0)
-            {
+            else if (i % sumsmile == 0) {
                 printf("Smile!\n");
             }
-            else if (i % sumcheer == 0)
-            {
+            else if (i % sumcheer == 0) {
                 printf("Cheer!\n");
             }
-            else
-            {
+            else {
                 printf("%d\n", i);
             }
         }
         break;
     }
     case 7:
-        printf("Thank you for your journey through Numerial!\n");
+        printf("Thank you for your journey through Numeria!\n");  // Fixed typo
         break;
     }
 
